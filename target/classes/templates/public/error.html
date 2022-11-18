@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/admin.html :: head"></head>
+<body>
+	<section id="container">
+
+		<div class="error-head"></div>
+		<div class="container ">
+
+			<section class="error-wrapper text-center">
+				<h1>
+					<img src="/images/500.png" alt="">
+				</h1>
+				<div class="error-desk">
+					<h2>OOOPS!!!</h2>
+					<p class="nrml-txt-alt">Hubo un error.</p>
+					<p>
+						Puede intentar refrescar el navegador o verificar la última acción realizada.
+					</p>
+				</div>
+				<a href="/" class="back-btn"><i class="fa fa-home"></i>
+					Volver al inicio</a>
+			</section>
+
+		</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/admin.html :: head"></head>
+<body>
+	<section id="container">
+		<header th:insert="fragments/admin.html :: header"></header>
+		<aside th:insert="fragments/admin.html :: sidebar"></aside>
+
+
+		<div class="error-head"></div>
+
+		<div class="container ">
+
+      <section class="error-wrapper text-center">
+          <h1><img src="/images/404.png" alt=""></h1>
+          <div class="error-desk">
+              <h2>page not found</h2>
+              <p class="nrml-txt">We Couldn’t Find This Page</p>
+          </div>
+          <a href="/admin/inicio" class="back-btn"><i class="fa fa-home"></i> Back To Home</a>
+      </section>
+
+    </div>
+
+	</section>
+</body>
+</html>

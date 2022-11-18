@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/advanced-table.html :: head"></head>
+
+<body>
+	<section id="container">
+		<header th:insert="fragments/admin.html :: header"> </header>
+		<aside th:insert="fragments/admin.html :: sidebar"></aside>
+
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+
+				<div class="row" th:if='${mensaje == "add-exito"}'>
+					<div class="col-md-12">
+						<div class="alert alert-success fade in">
+							<button data-dismiss="alert" class="close close-sm" type="button">
+								<i class="fa fa-times"></i>
+							</button>
+							<strong>¡Genial!</strong> <span th:text="${modelo.title}"></span> fue guardada con éxito.
+						</div>
+					</div>
+				</div>
+				<div class="row" th:if='${mensaje == "edit-exito"}'>
+					<div class="col-md-12">
+						<div class="alert alert-success fade in">
+							<button data-dismiss="alert" class="close close-sm" type="button">
+								<i class="fa fa-times"></i>
+							</button>
+							<strong>¡Genial!</strong> <span th:text="${modelo.title}"></span> fue guardada con éxito.
+						</div>
+					</div>
+				</div>
+				<div class="row" th:if='${mensaje == "delete-exito"}'>
+					<div class="col-md-12">
+						<div class="alert alert-success fade in">
+							<button data-dismiss="alert" class="close close-sm" type="button">
+								<i class="fa fa-times"></i>
+							</button>
+							<strong>¡Genial!</strong> <span th:text="${modelo.title}"></span> fue eliminada con éxito.
+						</div>
+					</div>
+				</div>
+				<div class="row" th:if='${mensaje == "view-exito"}'>
+					<div class="col-md-12">
+						<div class="well">
+							<p><strong>ID</strong> <span th:text="${modelo.id}"></span></p>
+							<p><strong>Title</strong> <span th:text="${modelo.title}"></span></p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+				
+					<div class="col-md-3">
+						<div class="mini-stat clearfix">
+							<span class="mini-stat-icon orange"><i class="fa fa-info-circle"></i></span>
+							<div class="mini-stat-info">
+								<span th:text="${conteoCategorias}"></span> Categor&iacute;as
+							</div>
+						</div>
+					</div>					
+					<div class="col-md-3">
+						<div class="mini-stat clearfix">
+							<a href="/categories/add"><span class="mini-stat-icon green"><i
+										class="fa fa-plus-circle"></i></span>
+								<div class="mini-stat-info">
+									<span>Agregar</span> nueva categor&iacute;a
+								</div>
+							</a>
+						</div>
+					</div>
+				
+					<div class="col-md-3">
+						<div class="mini-stat clearfix">
+							<span class="mini-stat-icon orange"><i class="fa fa-info-circle"></i></span>
+							<div class="mini-stat-info">
+								<span th:text="${conteo}"></span> Enlaces
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="mini-stat clearfix">
+							<a href="/links/add"><span class="mini-stat-icon green"><i
+										class="fa fa-plus-circle"></i></span>
+								<div class="mini-stat-info">
+									<span>Agregar</span> nuevo enlace
+								</div>
+							</a>
+						</div>
+					</div>
+					
+					
+				</div>
+				<!--mini statistics start-->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="panel">
+							<div class="panel-heading">
+								Categor&iacute;as de enlaces
+							</div>
+							<div class="panel-body">
+								<div id="CategoryTree" class="tree tree-plus-minus tree-solid-line tree-unselectable">
+
+									<ul id="myUL">
+										<li th:each="data : ${categories}">
+											<span class="arquicaret" th:text="${data.name}"></span>
+											<ul class="arquinested">
+												<li th:each="link : ${data.links}">
+													<a target="_blank" th:text="${link.title}" th:href="${link.url}"></a>
+												</li>
+												<li><span class="plus">
+													<a th:href="@{/links/add-by-category/{cat}(cat=${data.id})}">
+														<i>Nuevo Enlace</i>
+													</a></span>
+												</li>
+											</ul>
+										</li>
+
+										<li><span class="plus">
+											<a href="/categories/add">
+												Nueva categor&iacute;a
+											</a></span>
+										</li>
+									</ul>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<section class="panel">
+							<header class="panel-heading"> Todos los enlaces </header>
+							<div class="panel-body">
+								<div class="adv-table">
+									<table cellpadding="0" cellspacing="0" border="0"
+										class="table table-hover general-table">
+										<thead>
+											<tr>
+												<th>Title</th>
+												<th>Categor&Iacute;a</th>
+												
+											</tr>
+										</thead>
+										<tbody>
+											<th:block th:each="data : ${lista}">
+												<tr>
+													<td>
+													<a target="_blank" th:text="${data.title}" th:href="${data.url}"></a>
+													</td>
+													<td th:text="${data.category.name}">
+													</td>
+													<td>
+														<a target="_blank" th:href="${data.url}" class="fa fa-external-link btn btn-info">&nbsp;</a>
+														<a th:href="@{/links/edit/{id}(id=${data.id})}" class="fa fa-edit btn btn-success">&nbsp;</a>
+														<a th:href="@{/links/delete/{id}(id=${data.id})}" class="fa fa-trash-o btn btn-danger">&nbsp;</a>
+													</td>
+												</tr>
+											</th:block>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+				<!--mini statistics end-->
+			</section>
+		</section>
+		<!--main content end-->
+		<div th:insert="fragments/admin.html :: right-sidebar"></div>
+	</section>
+
+	<div th:insert="fragments/advanced-table.html :: post-scripts"></div>
+	<script>
+		var toggler = document.getElementsByClassName("arquicaret");
+		var i;
+
+		for (i = 0; i < toggler.length; i++) {
+			toggler[i].addEventListener("click", function () {
+				this.parentElement.querySelector(".arquinested").classList.toggle("arquiactive");
+				this.classList.toggle("arquicaret-down");
+			});
+		}
+	</script>
+</body>
+
+</html>

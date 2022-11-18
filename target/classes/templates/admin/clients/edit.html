@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/add-form.html :: head"></head>
+<body>
+	<section id="container">
+		<header th:insert="fragments/admin.html :: header"></header>
+		<aside th:insert="fragments/admin.html :: sidebar"></aside>
+
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+
+				<!--mini statistics start-->
+				<div class="row">
+					<div class="col-lg-12">
+						<section class="panel">
+							<header class="panel-heading">Editar datos de cliente</header>
+							<div class="panel-body">
+								<div class="position-center">
+									<form th:action="@{/clients/save}" method="post"
+										th:object="${modelo}" class="form-horizontal"
+										role="form">
+										
+										<input th:field="*{id}" th:value="*{id}" type="hidden"
+												id="id" name="id">
+												
+										<div class="form-group">
+											<label for="idNumber"
+												class="col-lg-2 col-sm-2 control-label">Cédula</label>
+											<div class="col-lg-10">
+												<input th:field="*{idNumber}" th:value="*{idNumber}" type="text"
+													class="form-control" id="idNumber" name="idNumber">
+											</div>
+										</div>	
+													
+										<div class="form-group">
+											<label for="name"
+												class="col-lg-2 col-sm-2 control-label">Nombre</label>
+											<div class="col-lg-10">
+												<input th:field="*{name}" th:value="*{name}" type="text"
+													class="form-control" id="name" name="name">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="lastname"
+												class="col-lg-2 col-sm-2 control-label">Apellido</label>
+											<div class="col-lg-10">
+												<input th:field="*{lastname}" th:value="*{lastname}" type="text"
+													class="form-control" id="lastname" name="lastname">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="phone"
+												class="col-lg-2 col-sm-2 control-label">Teléfono</label>
+											<div class="col-lg-10">
+												<input th:field="*{phone}" th:value="*{phone}" type="text"
+													class="form-control" id="phone" name="phone">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="address"
+												class="col-lg-2 col-sm-2 control-label">Dirección</label>
+											<div class="col-lg-10">
+												<input th:field="*{address}" th:value="*{address}" type="text"
+													class="form-control" id="address" name="address">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="email"
+												class="col-lg-2 col-sm-2 control-label">Correo electrónico</label>
+											<div class="col-lg-10">
+												<input th:field="*{email}" th:value="*{email}" type="email"
+													class="form-control" id="email" name="email">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="workplace"
+												class="col-lg-2 col-sm-2 control-label">Empresa donde trabaja</label>
+											<div class="col-lg-10">
+												<input th:field="*{workplace}" th:value="*{workplace}" type="text"
+													class="form-control" id="workplace" name="workplace">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="position"
+												class="col-lg-2 col-sm-2 control-label">Cargo que ocupa</label>
+											<div class="col-lg-10">
+												<input th:field="*{position}" th:value="*{position}" type="text"
+													class="form-control" id="position" name="position">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label for="phoneOffice"
+												class="col-lg-2 col-sm-2 control-label">Teléfono de oficina</label>
+											<div class="col-lg-10">
+												<input th:field="*{phoneOffice}" th:value="*{phoneOffice}" type="text"
+													class="form-control" id="phoneOffice" name="phoneOffice">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<div class="col-lg-offset-2 col-lg-10">
+												<button type="submit" class="btn btn-success">Guardar cambios</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="mini-stat clearfix">
+							<span class="mini-stat-icon orange"><i class="fa fa-gear"></i></span>
+							<div class="mini-stat-info">
+								<span th:text="${conteo}"></span> Clientes registrados en el
+								sistema
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="mini-stat clearfix">
+							<a href="/clients/list"><span class="mini-stat-icon green"><i
+									class="fa fa-list"></i></span>
+								<div class="mini-stat-info">
+									<span>Listar</span> clientes
+								</div></a>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="mini-stat clearfix">
+							<a href="/clients/add"><span class="mini-stat-icon green"><i
+									class="fa fa-plus-circle"></i></span>
+								<div class="mini-stat-info">
+									<span>Agregar</span> nuevo cliente
+								</div></a>
+						</div>
+					</div>
+				</div>
+				<!--mini statistics end-->
+			</section>
+		</section>
+		<!--main content end-->
+
+	<div th:insert="fragments/admin.html :: right-sidebar"></div>
+	</section>
+
+	<div th:insert="fragments/add-form.html :: post-scripts"></div>
+</body>
+</html>

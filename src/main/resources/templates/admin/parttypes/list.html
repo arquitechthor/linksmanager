@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/advanced-table.html :: head"></head>
+
+<body>
+	<section id="container">
+		<header th:insert="fragments/admin.html :: header"> </header>
+		<aside th:insert="fragments/admin.html :: sidebar"></aside>
+
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+
+				<div class="row" th:if='${mensaje == "add-exito"}'>
+					<div class="col-md-12">
+						<div class="alert alert-success fade in">
+							<button data-dismiss="alert" class="close close-sm" type="button">
+								<i class="fa fa-times"></i>
+							</button>
+							<strong>¡Genial!</strong> El tipo de repuesto <span
+								th:text="${modelo.name}"></span> se guardó con éxito.
+						</div>
+					</div>
+				</div>
+				<div class="row" th:if='${mensaje == "edit-exito"}'>
+					<div class="col-md-12">
+						<div class="alert alert-success fade in">
+							<button data-dismiss="alert" class="close close-sm" type="button">
+								<i class="fa fa-times"></i>
+							</button>
+							<strong>¡Genial!</strong> El tipo de repuesto <span
+								th:text="${modelo.name}"></span> se guardó con éxito.
+						</div>
+					</div>
+				</div>
+				<div class="row" th:if='${mensaje == "delete-exito"}'>
+					<div class="col-md-12">
+						<div class="alert alert-success fade in">
+							<button data-dismiss="alert" class="close close-sm" type="button">
+								<i class="fa fa-times"></i>
+							</button>
+							<strong>¡Genial!</strong> El tipo de repuesto <span
+								th:text="${modelo.name}"></span> se eliminó con éxito.
+						</div>
+					</div>
+				</div>
+				<div class="row" th:if='${mensaje == "view-exito"}'>
+					<div class="col-md-12">
+						<div class="well">
+							<p><strong>ID</strong> <span th:text="${modelo.id}"></span></p>
+							<p><strong>Name</strong> <span th:text="${modelo.name}"></span></p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="mini-stat clearfix">
+							<span class="mini-stat-icon orange"><i class="fa fa-gear"></i></span>
+							<div class="mini-stat-info">
+								<span th:text="${conteo}"></span> Unidades registradas en el
+								sistema
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="mini-stat clearfix">
+							<a href="/parttypes/add"><span class="mini-stat-icon green"><i
+									class="fa fa-plus-circle"></i></span>
+								<div class="mini-stat-info">
+									<span>Agregar</span> nueva unidad
+								</div></a>
+						</div>
+					</div>
+				</div>
+				<!--mini statistics start-->
+				<div class="row">
+					<div class="col-sm-12">
+						<section class="panel">
+							<header class="panel-heading"> El tipo de repuesto </header>
+							<div class="panel-body">
+								<div class="adv-table">
+									<table cellpadding="0" cellspacing="0" border="0"
+										class="display table table-bordered" id="hidden-table-info">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>Nombre</th>
+											</tr>
+										</thead>
+										<tbody>
+											<th:block th:each="data : ${lista}">
+												<tr>
+													<td th:text="${data.id}"></td>
+													<td th:text="${data.name}"></td>
+												</tr>
+											</th:block>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+				<!--mini statistics end-->
+			</section>
+		</section>
+		<!--main content end-->
+		<div th:insert="fragments/admin.html :: right-sidebar"></div>
+	</section>
+
+	<div th:insert="fragments/advanced-table.html :: post-scripts"></div>
+</body>
+</html>

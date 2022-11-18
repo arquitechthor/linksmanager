@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/advanced-table.html :: head"></head>
+
+<body>
+	<section id="container">
+		<header th:insert="fragments/admin.html :: header"> </header>
+		<aside th:insert="fragments/admin.html :: sidebar"></aside>
+
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+
+				<div class="row" th:if='${mensaje == "add-exito"}'>
+					<div class="col-md-12">
+						<div class="alert alert-success fade in">
+							<button data-dismiss="alert" class="close close-sm" type="button">
+								<i class="fa fa-times"></i>
+							</button>
+							<strong>¡Genial!</strong> El usuario <span
+								th:text="${modelo.username}"></span> fue guardado con éxito.
+						</div>
+					</div>
+				</div>
+				<div class="row" th:if='${mensaje == "edit-exito"}'>
+					<div class="col-md-12">
+						<div class="alert alert-success fade in">
+							<button data-dismiss="alert" class="close close-sm" type="button">
+								<i class="fa fa-times"></i>
+							</button>
+							<strong>¡Genial!</strong> El usuario <span
+								th:text="${modelo.username}"></span> fue guardado con éxito.
+						</div>
+					</div>
+				</div>
+				
+				<div class="row" th:if='${mensaje == "view-exito"}'>
+					<div class="col-md-12">
+						<div class="well">
+							<p><strong>ID</strong> <span th:text="${modelo.id}"></span></p>
+							<p><strong>Nombre</strong> <span th:text="${modelo.name}"></span></p>
+							<p><strong>Apellido</strong> <span th:text="${modelo.lastname}"></span></p>
+							<p><strong>Usuario</strong> <span th:text="${modelo.username}"></span></p>
+							<p><strong>Correo</strong> <span th:text="${modelo.email}"></span></p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<div class="mini-stat clearfix">
+							<span class="mini-stat-icon orange"><i class="fa fa-user"></i></span>
+							<div class="mini-stat-info">
+								<span th:text="${conteo}"></span> Usuarios registrados en el
+								sistema
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="mini-stat clearfix">
+							<a href="/users/list"><span class="mini-stat-icon green"><i
+									class="fa fa-list"></i></span>
+								<div class="mini-stat-info">
+									<span>Listar</span> usuarios
+								</div></a>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="mini-stat clearfix">
+							<a th:href="@{/users/edit/{id}(id=${modelo.id})}"><span class="mini-stat-icon green"><i
+									class="fa fa-plus-circle"></i></span>
+								<div class="mini-stat-info">
+									<span>Editar</span> este usuario
+								</div></a>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="mini-stat clearfix">
+							<a href="/users/add"><span class="mini-stat-icon green"><i
+									class="fa fa-plus-circle"></i></span>
+								<div class="mini-stat-info">
+									<span>Agregar</span> nuevo usuario
+								</div></a>
+						</div>
+					</div>
+				</div>
+				<!--mini statistics start-->
+				
+				<!--mini statistics end-->
+			</section>
+		</section>
+		<!--main content end-->
+		<div th:insert="fragments/admin.html :: right-sidebar"></div>
+	</section>
+
+	<div th:insert="fragments/advanced-table.html :: post-scripts"></div>
+</body>
+</html>
